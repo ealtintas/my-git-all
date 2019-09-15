@@ -13,14 +13,14 @@ do
         --dry) echo "Dry-run activated";
 			MODE=$MODE"DRYRUN"
             ;;
-        --silent) echo "Silent mode activated";
+        --silent) echo "SILENT mode activated";
 			MODE=$MODE"SILENT"
             ;;
-        --nolocal) echo "no-local activated";
+        --nolocal) echo "NOLOCAL activated";
 			MODE=$MODE"NOLOCAL"
             ;;
-        --noremote) echo "no-remote activated";
-			MODE=$MODE"NOREMOTE"
+        --showremote) echo "SHOWREMOTE activated";
+			MODE=$MODE"SHOWREMOTE"
             ;;
 #        --opt2) echo "option 2"
 #            ;;
@@ -43,7 +43,7 @@ for dir in $(find . -type d -name ".git"); do
 		if [[ $MODE != *"NOLOCAL"* ]]; then
 			echo "### LOCAL  : ${dir%/*}"
 		fi
-		if [[ $MODE != *"NOREMOTE"* ]]; then
+		if [[ $MODE = *"SHOWREMOTE"* ]]; then
 			echo "### REMOTE : $(git remote -v | grep '(fetch)$' | cut -f 2)";
 		fi
 	fi
@@ -53,28 +53,12 @@ for dir in $(find . -type d -name ".git"); do
 	cd - > /dev/null; 
 done
 
-exit
 
-# Yöntem-2
-find . -name ".git" -type d | sed 's/\/.git//' |  xargs -P10 -I{} git -C {} pull
-
-# Yöntem-4
-ls | xargs -P10 -I{} git -C {} pull
-
-# Yöntem-5
-cd plugins
-for f in cms admin chart
-do 
-  cd $f && git pull origin master && cd ..
-done
-
-# Yöntem-6
-for i in */.git; do ( echo $i; cd $i/..; git pull; ); done
-
-# Yöntem-1
-find . -maxdepth 1 -type d -exec git --git-dir={}/.git --work-tree=$PWD/{} pull origin master \;
-
-
+# Git repoları üzerinde calismak için yöntemler
+	#find . -name ".git" -type d | sed 's/\/.git//' |  xargs -P10 -I{} git -C {} pull
+	#ls | xargs -P10 -I{} git -C {} pull
+	#for i in */.git; do ( echo $i; cd $i/..; git pull; ); done
+	#find . -maxdepth 1 -type d -exec git --git-dir={}/.git --work-tree=$PWD/{} pull origin master \;
 
 #Refs:
 #https://stackoverflow.com/questions/3497123/run-git-pull-over-all-subdirectories
