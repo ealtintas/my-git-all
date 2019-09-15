@@ -21,10 +21,10 @@ usage: my-git-all.sh [--optional-parameter] [actual git command]
 
 optional parameters:
 
-  --dry : dont run the commands actually
-  --silent  : dont show additional information
-  --noremote  : dont show remote repository address
-  --nolocal : dont show local repository adress
+  --dry : dont run the commands actually just show information
+  --silent  : dont print any additional information
+  --showremote  : show remote repository address (default action dont show)
+  --nolocal : dont show local repository adress (default actio show local repo adress)
 ```
 
 ## Examples
