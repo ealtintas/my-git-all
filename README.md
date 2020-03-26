@@ -1,5 +1,7 @@
 # my-git-all.sh
 
+**Turkish:** Bash ile yazılmış bu betik, argüman olarak aldığı git komutlarını git deposu içeren tüm alt dizinler (".git" dizini varsa) altında çalıştırır. Örneğin "my-git-all pull" komutu ile mevcut dizin altındaki binlerce git reposunu kolay ve hızlı bir şekilde güncelleyebilirsiniz.
+
 ## Description
 
 Automatically run git commands in multiple git repositories
